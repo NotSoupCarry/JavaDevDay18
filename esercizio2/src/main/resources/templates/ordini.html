@@ -1,60 +1,79 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>Ordini</title>
 </head>
+
 <body>
+    <div style="text-align: center;">
 
-<h1>Lista degli Ordini</h1>
+        <h1>Lista degli Ordini</h1>
 
-<form method="get" action="/ordini">
-    <label for="stato">Filtra per stato:</label>
-    <select id="stato" name="stato">
-        <option value="" th:selected="${stato == null}">Tutti</option>
-        <option value="IN_ELABORAZIONE" th:selected="${stato == 'IN_ELABORAZIONE'}">In Elaborazione</option>
-        <option value="SPEDITO" th:selected="${stato == 'SPEDITO'}">Spedito</option>
-        <option value="CONSEGNATO" th:selected="${stato == 'CONSEGNATO'}">Consegnato</option>
-    </select>
-    <button type="submit">Filtra</button>
-</form>
+        <form method="get" action="/ordini">
+            <label for="stato">Filtra per stato:</label>
+            <select id="stato" name="stato">
+                <option value="" th:selected="${stato == null}">Tutti</option>
+                <option value="IN_ELABORAZIONE" th:selected="${stato == 'IN_ELABORAZIONE'}">In Elaborazione</option>
+                <option value="SPEDITO" th:selected="${stato == 'SPEDITO'}">Spedito</option>
+                <option value="CONSEGNATO" th:selected="${stato == 'CONSEGNATO'}">Consegnato</option>
+            </select>
+            <button type="submit">Filtra</button>
+        </form>
 
-<h2>Lista degli Ordini</h2>
-<table border="1">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Cliente</th>
-            <th>Importo</th>
-            <th>Stato</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr th:each="ordine : ${ordini}">
-            <td th:text="${ordine.id}"></td>
-            <td th:text="${ordine.cliente.nome}"></td>
-            <td th:text="${ordine.importo}"></td>
-            <td th:text="${ordine.stato}"></td>
-        </tr>
-    </tbody>
-</table>
+        <h2>Tabbella Ordini</h2>
+        <table border="1" style="display: inline; text-align: center;">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Cliente</th>
+                    <th>Importo</th>
+                    <th>Stato</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="ordine : ${ordini}">
+                    <td th:text="${ordine.id}"></td>
+                    <td th:text="${ordine.cliente.nome}"></td>
+                    <td th:text="${ordine.importo}"></td>
+                    <td th:text="${ordine.stato}"></td>
+                </tr>
+            </tbody>
+        </table>
 
-<h2>Aggiungi Nuovo Ordine</h2>
-<form action="/ordini/nuovo" method="post">
-    <label for="clienteId">Cliente ID:</label>
-    <input type="number" id="clienteId" name="cliente.id" required><br><br>
+        <h2>Aggiungi Nuovo Ordine</h2>
+        <form action="/ordini/nuovo" method="post">
+            <label for="clienteId">Cliente ID:</label>
+            <input type="number" id="clienteId" name="cliente.id" required><br><br>
 
-    <label for="importo">Importo:</label>
-    <input type="text" id="importo" name="importo" required><br><br>
+            <label for="importo">Importo:</label>
+            <input type="text" id="importo" name="importo" required><br><br>
 
-    <label for="stato">Stato:</label>
-    <select id="stato" name="stato">
-        <option value="IN_ELABORAZIONE">IN_ELABORAZIONE</option>
-        <option value="SPEDITO">SPEDITO</option>
-        <option value="CONSEGNATO">CONSEGNATO</option>
-    </select><br><br>
+            <label for="stato">Stato:</label>
+            <select id="stato" name="stato">
+                <option value="IN_ELABORAZIONE">IN_ELABORAZIONE</option>
+                <option value="SPEDITO">SPEDITO</option>
+                <option value="CONSEGNATO">CONSEGNATO</option>
+            </select><br><br>
 
-    <button type="submit">Crea Ordine</button>
-</form>
+            <button type="submit">Crea ordine</button>
+        </form>
 
+        <!-- Form per calcolare il prezzo in base all'ID dell'ordine -->
+        <h2>Calcola Prezzo dell'Ordine</h2>
+        <form method="get" action="/ordini/calcolaPrezzo">
+            <label for="ordineId">ID Ordine:</label>
+            <input type="number" id="ordineId" name="ordineId" required><br><br>
+
+            <button type="submit">Calcola Prezzo</button>
+        </form>
+
+        <!-- Mostra il risultato del calcolo del prezzo -->
+        <div>
+            <h3 th:if="${prezzo != null}">Prezzo Calcolato: <span th:text="${prezzo}"></span></h3>
+            <h3 th:if="${error != null}" th:text="${error}"></h3>
+        </div>
+    </div>
 </body>
+
 </html>

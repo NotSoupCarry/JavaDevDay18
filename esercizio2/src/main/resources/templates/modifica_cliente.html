@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>Modifica Cliente</title>
 </head>
+
 <body>
 
-<h1>Modifica Cliente</h1>
+    <div style="text-align: center;">
 
-<form action="#" th:action="@{/clienti/modifica/{id}(id=${cliente.id})}" method="post">
-    <label for="nome">Nome:</label>
-    <input type="text" id="nome" name="nome" th:value="${cliente.nome}" required><br><br>
+        <h1>Modifica Cliente</h1>
 
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" th:value="${cliente.email}" required><br><br>
+        <form action="#" th:action="@{/clienti/modifica/{id}(id=${cliente.id})}" method="post">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" th:value="${cliente.nome}" required><br><br>
 
-    <label for="telefono">Telefono:</label>
-    <input type="text" id="telefono" name="telefono" th:value="${cliente.telefono}"><br><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" th:value="${cliente.email}" required><br><br>
 
-    <button type="submit">Modifica Cliente</button>
-</form>
+            <label for="telefono">Telefono:</label>
+            <input type="text" id="telefono" name="telefono" th:value="${cliente.telefono}"><br><br>
 
+            <button type="submit">Modifica Cliente</button>
+        </form>
+    </div>
 </body>
+
 </html>

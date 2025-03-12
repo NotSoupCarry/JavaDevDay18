@@ -43,4 +43,11 @@ public class ClienteControllerThymeLeaf {
         clienteService.deleteClient(id);
         return "redirect:/clienti"; // Torna alla lista dei clienti
     }
+
+    // POST - Crea un nuovo ordine
+    @PostMapping("/nuovo")
+    public String createOrder(@ModelAttribute Cliente cliente) {
+        clienteService.createClient(cliente);
+        return "redirect:/clienti"; // Torna alla lista degli ordini
+    }
 }

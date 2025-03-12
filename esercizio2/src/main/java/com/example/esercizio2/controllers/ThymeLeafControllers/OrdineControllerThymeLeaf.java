@@ -46,4 +46,22 @@ public class OrdineControllerThymeLeaf {
                 .toList());
         return "ordini"; // Mostra solo ordini spediti
     }
+
+    // GET - Calcola il prezzo dell'ordine
+    // GET - Calcola il prezzo dell'ordine
+    @GetMapping("/calcolaPrezzo")
+    public String calcolaPrezzo(@RequestParam("ordineId") Long ordineId, Model model) {
+        try {
+            double prezzo = ordineService.prezzoStrategy(ordineId); // Calcola il prezzo in base alla strategia
+            model.addAttribute("prezzo", prezzo); // Aggiungi il prezzo al modello
+        } catch (RuntimeException e) {
+            model.addAttribute("error", "Errore: " + e.getMessage()); // Aggiungi il messaggio di errore al modello
+        }
+
+        // Aggiungi gli ordini e gli stati per mostrare tutto sulla stessa pagina
+        model.addAttribute("ordini", ordineService.getAllOrders());
+        model.addAttribute("stati", StatoOrdine.values());
+
+        return "ordini"; // Ritorna alla pagina degli ordini
+    }
 }
