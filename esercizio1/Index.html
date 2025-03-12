@@ -128,12 +128,14 @@
                     // Itera attraverso l'array e aggiungi ogni stato e conteggio alla lista
                     counts.forEach(item => {
                         const listItem = document.createElement("li");
-                        listItem.textContent = `${item.stato}: ${item.count}`; // Usa item.stato e item.count
+                        // Modifica per usare gli indici dell'array
+                        listItem.textContent = `${item[0]}: ${item[1]}`; // Usa item[0] per stato e item[1] per count
                         vehicleCount.appendChild(listItem);
                     });
                 })
                 .catch(() => displayMessage("Errore nel recupero del conteggio", "error"));
         }
+
 
 
 

@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.example.esercizio1.enums.VehicleStatuses;
-import com.example.esercizio1.models.ResultQueryCountVehicles;
 import com.example.esercizio1.models.Vehicle;
 import com.example.esercizio1.repositorys.VehicleRepository;
 
@@ -44,8 +43,8 @@ public class VehicleService {
         }
     }
 
-    // metodo per contare i veicoli per stato
-    public List<ResultQueryCountVehicles> getVehicleCountByStatus() {
+    // GET metodo per contare i veicoli per stato
+    public List<Object[]> getVehicleCountByStatus() {
         return vehicleRepository.countVehiclesByStatus();
     }
 
@@ -55,6 +54,7 @@ public class VehicleService {
     }
 
     // PATCH per modificare lo stato di un veicolo
+    @Transactional
     public Optional<Vehicle> patchVehicle(Long id, VehicleStatuses newState) {
         Optional<Vehicle> optionalVehicle = vehicleRepository.findById(id);
 

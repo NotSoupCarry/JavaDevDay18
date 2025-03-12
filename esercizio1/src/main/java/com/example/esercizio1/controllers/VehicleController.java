@@ -9,7 +9,6 @@ import java.util.Optional;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.esercizio1.models.ResultQueryCountVehicles;
 import com.example.esercizio1.models.Vehicle;
 import com.example.esercizio1.enums.VehicleStatuses;
 import com.example.esercizio1.services.VehicleService;
@@ -72,7 +71,7 @@ public class VehicleController {
 
     // GET per contare i veicoli per stato
     @GetMapping("/count-by-status")
-    public List<ResultQueryCountVehicles> getVehicleCountByStatus() {
+    public List<Object[]> getVehicleCountByStatus() {
         return vehicleService.getVehicleCountByStatus();
     }
 }
