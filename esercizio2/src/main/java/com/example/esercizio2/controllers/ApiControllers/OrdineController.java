@@ -1,4 +1,4 @@
-package com.example.esercizio2.controllers;
+package com.example.esercizio2.controllers.ApiControllers;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ public class OrdineController {
     }
 
     // GET - Restituisce tutti gli ordini
-    @GetMapping
+    @GetMapping()
     public List<Ordine> getAllOrders() {
         return ordineService.getAllOrders();
     }
@@ -57,5 +57,18 @@ public class OrdineController {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();
+    }
+
+    // GET /api/ordini/{id}/prezzo -> Calcola il prezzo di un ordine in base alla
+    // strategia
+    @GetMapping("/prezzo/{id}")
+    public ResponseEntity<Double> calcolaPrezzo(@PathVariable Long id) {
+        try {
+            // Chiama il servizio per calcolare il prezzo
+            double prezzo = ordineService.prezzoStrategy(id);
+            return ResponseEntity.ok(prezzo);
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build(); // Se l'ordine non è trovato
+        }
     }
 }

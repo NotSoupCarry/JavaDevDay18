@@ -1,4 +1,4 @@
-package com.example.esercizio2.controllers;
+package com.example.esercizio2.controllers.ApiControllers;
 
 import com.example.esercizio2.models.Cliente;
 import com.example.esercizio2.services.ClienteService;
