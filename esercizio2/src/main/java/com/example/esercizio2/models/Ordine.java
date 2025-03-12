@@ -22,7 +22,7 @@ public class Ordine {
     @Column(nullable = false)
     private LocalDate dataOrdine = LocalDate.now();
 
-    @Column(nullable = false, precision = 10, scale = 2)
+    @Column(nullable = false, precision = 10)
     private Double importo;
 
     @Enumerated(EnumType.STRING)
