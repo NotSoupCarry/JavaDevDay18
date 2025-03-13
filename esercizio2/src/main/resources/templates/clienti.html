@@ -27,7 +27,9 @@
                     <td th:text="${cliente.email}"></td>
                     <td th:text="${cliente.telefono}"></td>
                     <td>
-                        <a th:href="@{/clienti/modifica/{id}(id=${cliente.id})}">Modifica</a> |
+                        <a th:href="@{/clienti/modifica/{id}(id=${cliente.id})}">Modifica</a>
+                        <!-- Form per aggiungere un cliente -->
+
                         <a th:href="@{/clienti/elimina/{id}(id=${cliente.id})}"
                             onclick="return confirm('Sei sicuro di voler eliminare questo cliente?')">Elimina</a>
                     </td>
@@ -53,7 +55,7 @@
         </form>
 
         <br><br>
-        <a href="/ordini">Vai agli ordini</a> |
+        <a href="/ordini">Vai agli ordini</a>
     </div>
 </body>
 
